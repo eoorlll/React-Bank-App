@@ -20,19 +20,16 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    environment: github-pages
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          
+
       - name: Install dependencies
         run: npm install
-        
+
       - name: Build
-        env:
-          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
         run: npm run build
 
       - name: Deploy
